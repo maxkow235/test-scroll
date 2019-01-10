@@ -20,6 +20,23 @@
 	align-items: center;
 }
 
+.panel.blue {
+	background-color: blue;
+}
+
+.panel.turqoise {
+	background-color: #40e0d0;
+}
+
+.panel.green {
+	background-color: green;
+}
+
+.panel.bordeaux{
+	background-color: #5F021F;
+}
+
+
 body.light_theme {
 	background-color: #fff;
 }
@@ -57,7 +74,8 @@ main {
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background-color: black;
+	
+	color: white;
 	height: 100%;
 	opacity: 0;
 }

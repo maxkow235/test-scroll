@@ -57,9 +57,8 @@ $(document).ready(function() {
 	// define movement of panels
 	var wipeAnimation = new TimelineMax()
 		// animate to second panel
-		.to("#slideContainer", 0.5, {
-			z: -150
-		}) // move back in 3D space
+		
+		
 		.to("#slideContainer", 1, {
 			x: "-25%"
 		}) // move in to first panel
@@ -67,10 +66,7 @@ $(document).ready(function() {
 			z: 0
 		}) // move back to origin in 3D space
 		// animate to third panel
-		.to("#slideContainer", 0.5, {
-			z: -150,
-			delay: 1
-		})
+		
 		.to("#slideContainer", 1, {
 			x: "-50%"
 		})
@@ -78,10 +74,7 @@ $(document).ready(function() {
 			z: 0
 		})
 		// animate to forth panel
-		.to("#slideContainer", 0.5, {
-			z: -150,
-			delay: 1
-		})
+	
 		.to("#slideContainer", 1, {
 			x: "-75%"
 		})
@@ -93,7 +86,7 @@ $(document).ready(function() {
 	new ScrollMagic.Scene({
 			triggerElement: "#pinContainer",
 			triggerHook: "onLeave",
-			duration: "500%"
+			duration: "400%"
 		})
 		.setPin("#pinContainer")
 		.setTween(wipeAnimation)
