@@ -33,15 +33,22 @@ hr {
 	align-items: center;
 }
 
+.scroll-wrap {
+	position: relative;
+	height: 100%;
+}
+
 .scroll-cont p {
 	display: inline-block;
 }
 
 .close-btn {
-	position: fixed;
+	
+	position: relative;
 	top: 60px;
 	left: 60px;
-}
+	z-index: 500;
+	}
 
 .project-popup {
 	position: absolute;
@@ -348,6 +355,14 @@ div.section .slide div.container-fluid {
 	padding-right: 60px;
 	padding-top: 30px;
 }
+
+div.section.partners div.container-fluid {
+	padding-top: 0;
+	padding-left: 80px; 
+	padding-right: 80px;
+	padding-top: 30px;
+}
+
 
 .submenu a {
 	font-size: 14px;

@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	var myScroll
-	myScroll = new IScroll('.project-popup', {
+	myScroll = new IScroll('.scroll-wrap', {
 		scrollX: true,
 		scrollY: false,
 		mouseWheel: true,
@@ -132,9 +132,10 @@ $(document).ready(function() {
 })
 
 function refreshCloseEvent() {
-	$('.project-popup').append('<button class="close-btn">Close </button>')
-	$('.project-popup .close-btn').click(function() {
-		$($(this).parent()).removeClass('open').animate({
+	$('.project-popup .scroll-wrap').children('.close-btn').remove()
+	$('.project-popup .scroll-wrap').prepend('<button class="close-btn">Close </button>')
+	$('.project-popup .scroll-wrap .close-btn').click(function() {
+		$($(this).parent().parent()).removeClass('open').animate({
 			opacity: 0
 		}, 400, function() {
 			$(this).hide()
