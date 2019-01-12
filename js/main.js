@@ -114,6 +114,7 @@ $(document).ready(function() {
 
 	$('a.project-link').click(function(e) {
 		myScroll.refresh()
+		refreshCloseEvent()
 		e.preventDefault()
 		
 		$(this).removeClass('scaled')
