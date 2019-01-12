@@ -173,3 +173,21 @@ div.section .slide div.container {
 .fp-controlArrow {
 	display: none;
 }
+
+@media (max-width: 768px) {
+	nav {
+		position: fixed;
+		transform: translateX(-100%);
+		top: 0;
+		bottom: 0;
+		background-color: green;
+		width: 50vw;
+	}
+
+	main.split {
+		width: 100vw;
+	}
+	.separator {
+		display: none;
+	}
+}
