@@ -115,7 +115,7 @@ $(document).ready(function() {
 	$('a.project-link').click(function(e) {
 		myScroll.refresh()
 		e.preventDefault()
-		window.location.replace('/#page4');
+		
 		$(this).removeClass('scaled')
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
@@ -126,7 +126,7 @@ $(document).ready(function() {
 		$.fn.fullpage.setKeyboardScrolling(false);
 	})
 
-	
+
 
 })
 
