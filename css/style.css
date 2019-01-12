@@ -27,7 +27,7 @@ hr {
 .scroll-cont {
 	width: 4000px;
 	height: 100%;
-	
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -190,14 +190,14 @@ h2 {
 }
 
 .slide-cont {
-	max-height: 50vh;
+	max-height: 60vh;
 	position: absolute;
 	bottom: 0;
 	
 }
 
 .fp-auto-height .fp-tableCell {
-	max-height: 50vh !important;
+	max-height: 60vh !important;
 }
 
 .fixed_submenu {
@@ -342,8 +342,10 @@ body.dark_theme .nav-list a:hover {
 	color: #fff;
 }
 
-div.section .slide div.container {
+div.section .slide div.container-fluid {
 	padding-top: 0;
+	padding-left: 60px; 
+	padding-right: 60px;
 	padding-top: 30px;
 }
 

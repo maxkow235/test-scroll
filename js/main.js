@@ -1,13 +1,18 @@
 $(document).ready(function() {
-	var myScroll = new IScroll('.project-popup', {
+	var myScroll
+	myScroll = new IScroll('.project-popup', {
 		scrollX: true,
 		scrollY: false,
 		mouseWheel: true,
 		disablePointer: true, // important to disable the pointer events that causes the issues
-disableTouch: false, // false if you want the slider to be usable with touch devices
-disableMouse: false // false if you want the slider to be usable with a mouse (desktop)
+		disableTouch: false,
+		disableMouse: false
 	});
-	$('.project-popup').append('<button class="close-btn">Close </button>')
+
+	refreshCloseEvent()
+
+
+
 	$('#fullpage').fullpage({
 		//options here
 		scrollHorizontally: true,
@@ -20,7 +25,9 @@ disableMouse: false // false if you want the slider to be usable with a mouse (d
 
 		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
 		afterLoad: function(origin, destination, direction) {
-			myScroll.refresh();
+			myScroll.refresh()
+			refreshCloseEvent()
+
 			let darkSections = ['page3', 'page4', 'page5']
 			if (darkSections.indexOf(destination.anchor) !== -1) {
 
@@ -30,7 +37,9 @@ disableMouse: false // false if you want the slider to be usable with a mouse (d
 			}
 		},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-			myScroll.refresh();
+			myScroll.refresh()
+			refreshCloseEvent()
+
 			$(`.submenu a[href^="#${anchorLink.anchor}"`).removeClass('active')
 			$(`.submenu a[href^="#${anchorLink.anchor}"`).eq(slideAnchor.index).addClass('active')
 
@@ -61,6 +70,11 @@ disableMouse: false // false if you want the slider to be usable with a mouse (d
 		}
 
 	});
+
+	$(window).resize(function() {
+		myScroll.refresh()
+			refreshCloseEvent()
+	})
 
 	$(document).mouseleave(function(e) {
 
@@ -99,7 +113,9 @@ disableMouse: false // false if you want the slider to be usable with a mouse (d
 
 
 	$('a.project-link').click(function(e) {
+		myScroll.refresh()
 		e.preventDefault()
+		window.location.replace('/#page4');
 		$(this).removeClass('scaled')
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
@@ -109,6 +125,13 @@ disableMouse: false // false if you want the slider to be usable with a mouse (d
 		$.fn.fullpage.setAllowScrolling(false);
 		$.fn.fullpage.setKeyboardScrolling(false);
 	})
+
+	
+
+})
+
+function refreshCloseEvent() {
+	$('.project-popup').append('<button class="close-btn">Close </button>')
 	$('.project-popup .close-btn').click(function() {
 		$($(this).parent()).removeClass('open').animate({
 			opacity: 0
@@ -118,6 +141,4 @@ disableMouse: false // false if you want the slider to be usable with a mouse (d
 		$.fn.fullpage.setAllowScrolling(true);
 		$.fn.fullpage.setKeyboardScrolling(true);
 	})
-
-
-})
+}
