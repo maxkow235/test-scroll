@@ -1,15 +1,19 @@
 $(document).ready(function() {
-	var myScroll
-	myScroll = new IScroll('.scroll-wrap', {
-		scrollX: true,
-		scrollY: false,
-		mouseWheel: true,
-		disablePointer: true, // important to disable the pointer events that causes the issues
-		disableTouch: false,
-		disableMouse: false
-	});
+	var scrollers = []
+	var iScrollServices
+	$('.project-popup').each(function() {
+		console.log(`#${$(this).attr('id')} .scroll-wrap`)
+		myScroll = new IScroll(`#${$(this).attr('id')} .scroll-wrap`, {
+			scrollX: true,
+			scrollY: false,
+			mouseWheel: true,
+			disablePointer: true, // important to disable the pointer events that causes the issues
+			disableTouch: false,
+			disableMouse: false
+		});
+		scrollers.push(myScroll)
 
-	refreshCloseEvent()
+	})
 
 
 
@@ -25,8 +29,30 @@ $(document).ready(function() {
 
 		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
 		afterLoad: function(origin, destination, direction) {
-			myScroll.refresh()
-			refreshCloseEvent()
+			iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
+			let offsetDiff = $('.section.services').find('.fp-scrollable').offset().top
+			$('.snap').each(function() {
+				if (($(this).offset().top - offsetDiff) <= 0) {
+					$('a[data-scrollanchor]').removeClass('active')
+					$(`a[data-scrollanchor="#${$(this).attr("id")}"]`).addClass('active')
+				}
+			})
+
+
+			iScrollServices.on('scrollEnd', function() {
+
+				$('.snap').each(function() {
+					if (($(this).offset().top - offsetDiff) <= 0) {
+						$('a[data-scrollanchor]').removeClass('active')
+						$(`a[data-scrollanchor="#${$(this).attr("id")}"]`).addClass('active')
+					}
+				})
+
+
+			})
+
+
+			//refreshCloseEvent(scrollers)
 
 			let darkSections = ['page3', 'page4', 'page5']
 			if (darkSections.indexOf(destination.anchor) !== -1) {
@@ -37,16 +63,20 @@ $(document).ready(function() {
 			}
 		},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-			myScroll.refresh()
-			refreshCloseEvent()
 
-			$(`.submenu a[href^="#${anchorLink.anchor}"`).removeClass('active')
-			$(`.submenu a[href^="#${anchorLink.anchor}"`).eq(slideAnchor.index).addClass('active')
+			refreshCloseEvent(scrollers)
 
 
 
 		}
 	});
+
+	$('.submenu a[data-scrollanchor]').click(function() {
+		iScrollServices.scrollToElement($(this).attr("data-scrollanchor"))
+
+
+	})
+
 	$(document).mousemove(function(e) {
 
 		const cursor = $('#cursor');
@@ -72,8 +102,8 @@ $(document).ready(function() {
 	});
 
 	$(window).resize(function() {
-		myScroll.refresh()
-			refreshCloseEvent()
+
+		refreshCloseEvent(scrollers)
 	})
 
 	$(document).mouseleave(function(e) {
@@ -113,10 +143,13 @@ $(document).ready(function() {
 
 
 	$('a.project-link').click(function(e) {
-		myScroll.refresh()
-		refreshCloseEvent()
+		$('.logo').addClass('dark')
+		$('#cursor').addClass('dark')
+		$('.page_header').addClass('popup_open')
+		$('nav').removeClass('open')
+		refreshCloseEvent(scrollers)
 		e.preventDefault()
-		
+
 		$(this).removeClass('scaled')
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
@@ -127,14 +160,37 @@ $(document).ready(function() {
 		$.fn.fullpage.setKeyboardScrolling(false);
 	})
 
+	$('.menu_toggle').click(function() {
+		$(this).toggleClass('is-active')
+		$('nav.split').toggleClass('open')
+	})
 
+	$('li[data-menuanchor] a').click(function() {
+		$('.menu_toggle').toggleClass('is-active')
+		$('nav.split').removeClass('open')
+	})
 
 })
 
-function refreshCloseEvent() {
+function refreshCloseEvent(arr) {
+	arr.forEach(function(item) {
+		console.log(item)
+		item.refresh()
+		var totalWidth = 0;
+
+		$(`.${item.scroller.className}`).children().each(function() {
+			totalWidth = totalWidth + $(this).width();
+		});
+		item.scroller.style.width = totalWidth + 320 + "px";
+
+	})
+
 	$('.project-popup .scroll-wrap').children('.close-btn').remove()
-	$('.project-popup .scroll-wrap').prepend('<button class="close-btn">Close </button>')
+	$('.project-popup .scroll-wrap').prepend('<button class="close-btn">x</button>')
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
+		$('.page_header').removeClass('popup_open')
+		$('.logo').removeClass('dark')
+		$('#cursor').removeClass('dark')
 		$($(this).parent().parent()).removeClass('open').animate({
 			opacity: 0
 		}, 400, function() {
