@@ -46,7 +46,7 @@ $(document).ready(function() {
 					scrollX: true,
 					scrollY: false,
 					mouseWheel: true,
-					
+					click:true,
 					disablePointer: true,
 					disableTouch: false,
 					disableMouse: false
