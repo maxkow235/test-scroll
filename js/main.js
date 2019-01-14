@@ -7,6 +7,8 @@ $(document).ready(function() {
 			scrollX: true,
 			scrollY: false,
 			mouseWheel: true,
+			click:true,
+			probeType:2,
 			disablePointer: true, // important to disable the pointer events that causes the issues
 			disableTouch: false,
 			disableMouse: false
@@ -24,15 +26,17 @@ $(document).ready(function() {
 		scrollHorizontallyKey: 'YWx2YXJvdHJpZ28uY29tX01mU2MyTnliMnhzU0c5eWFYcHZiblJoYkd4NVNRcg==',
 		menu: ".fullpage-nav",
 		scrollOverflow: true,
-
+		scrollOverflowOptions: {
+			probeType:2
+		},
 		fitToSection: false,
 
 		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
 		afterLoad: function(origin, destination, direction) {
 			iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
-			iScrollServices.options.probeType = 3
-			iScrollServices.refresh()
-			console.log(iScrollServices.options)
+			
+			
+			
 			let submenuScroll;
 		
 
@@ -46,6 +50,7 @@ $(document).ready(function() {
 					scrollX: true,
 					scrollY: false,
 					mouseWheel: true,
+					probeType:2,
 					click:true,
 					disablePointer: true,
 					disableTouch: false,
