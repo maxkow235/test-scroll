@@ -7,8 +7,8 @@ $(document).ready(function() {
 			scrollX: true,
 			scrollY: false,
 			mouseWheel: true,
-			click:true,
-			probeType:2,
+			click: true,
+			probeType: 2,
 			disablePointer: true, // important to disable the pointer events that causes the issues
 			disableTouch: false,
 			disableMouse: false
@@ -27,18 +27,18 @@ $(document).ready(function() {
 		menu: ".fullpage-nav",
 		scrollOverflow: true,
 		scrollOverflowOptions: {
-			probeType:2
+			probeType: 2
 		},
 		fitToSection: false,
 
 		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
 		afterLoad: function(origin, destination, direction) {
 			iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
-			
-			
-			
-			let submenuScroll;
-		
+
+
+
+			var submenuScroll;
+
 
 			$('.submenu .submenu_scroll').each(function() {
 				let linksWidth = 0
@@ -50,14 +50,23 @@ $(document).ready(function() {
 					scrollX: true,
 					scrollY: false,
 					mouseWheel: true,
-					probeType:2,
-					click:true,
+					probeType: 2,
+					click: true,
 					disablePointer: true,
 					disableTouch: false,
 					disableMouse: false
 				});
+
+				$('.submenu a[data-scrollanchor]').click(function() {
+					iScrollServices.scrollToElement($(this).attr("data-scrollanchor"))
+					$('a[data-scrollanchor]').removeClass('active')
+
+					$(this).addClass('active')
+					submenuScroll.scrollToElement(this)
+				})
+
 			})
-		
+
 
 			let offsetDiff = $('.section.services').find('.fp-scrollable').offset().top
 			$('.snap').each(function() {
@@ -71,7 +80,7 @@ $(document).ready(function() {
 			iScrollServices.on('scrollEnd', function() {
 				//console.log('ss')
 				$('.snap').each(function() {
-					
+
 					if (($(this).offset().top - offsetDiff) <= 0) {
 						$('a[data-scrollanchor]').removeClass('active')
 
@@ -80,9 +89,6 @@ $(document).ready(function() {
 					}
 				})
 			})
-
-
-
 
 
 
@@ -98,10 +104,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.submenu a[data-scrollanchor]').click(function() {
-		iScrollServices.scrollToElement($(this).attr("data-scrollanchor"))
-		//console.log(iScrollServices)
-	})
+
 
 	$(document).mousemove(function(e) {
 
@@ -212,9 +215,11 @@ function refreshCloseEvent(arr) {
 		var totalWidth = 0;
 
 		$(`.${item.scroller.className}`).children().each(function() {
+			console.log($(this).width())
 			totalWidth = totalWidth + $(this).width();
 		});
-		item.scroller.style.width = totalWidth + 320 + "px";
+		item.scroller.style.minWidth = totalWidth + 160  + "px";
+		item.scroller.style.width = totalWidth + 160  + "px";
 
 	})
 

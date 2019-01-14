@@ -1,6 +1,6 @@
 @import url('fullpage.min.css');
 @import url('hamburgers.min.css');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500|Playfair+Display:700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500|Playfair+Display:700');
 
 body {
 	background-color: #fff;
@@ -82,6 +82,7 @@ hr {
 
 .scroll-wrap {
 	position: relative;
+	overflow: hidden;
 	height: 100%;
 }
 
@@ -118,6 +119,18 @@ hr {
 	bottom: 0;
 	top: 0;
 	z-index: 500;
+}
+
+.p_section img {
+	position: relative;
+}
+
+
+
+.p_section .text {
+	position: absolute;
+	bottom: 50px;
+	left: 40px;
 }
 
 .project-popup.open .close-btn {
@@ -423,8 +436,10 @@ body.dark_theme {
 	padding-left: 40px;
 	padding-right: 40px;
 	height: 100%;
-	width: 1000px;
+	width: 1440px;
+	min-width: 1440px;
 	display: flex;
+	justify-content: space-around;
 	align-items: center;
 }
 
@@ -543,11 +558,31 @@ body.dark_theme .logo {
 	color: #fff;
 }
 
+.contact_info a {
+	font-size: 20px;
+	color: white;
+	font-weight: 500;
+}
+
+.contact_info h4 {
+	font-size: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 300;
+	margin-top: 20px;
+}
+
+.section.contacts .footer_links {
+}
+
 .logo.dark,
 body.dark_theme .logo.dark {
 	display: block;
 	border-color: #000;
 	color: #000;
+}
+
+.project_info {
+	width: 420px;
 }
 
 @media (max-width:768px) {
@@ -563,7 +598,7 @@ body.dark_theme .logo.dark {
 		background-color: rgba(255, 255, 255, 0.9);
 		width: 70vw;
 	}
-	
+
 	h2,
 	h3 {
 		font-size: 40px;
