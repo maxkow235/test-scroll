@@ -2,7 +2,7 @@ $(document).ready(function() {
 	var scrollers = []
 	var iScrollServices
 	$('.project-popup').each(function() {
-		console.log(`#${$(this).attr('id')} .scroll-wrap`)
+
 		myScroll = new IScroll(`#${$(this).attr('id')} .scroll-wrap`, {
 			scrollX: true,
 			scrollY: false,
@@ -30,51 +30,72 @@ $(document).ready(function() {
 		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
 		afterLoad: function(origin, destination, direction) {
 			iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
+			iScrollServices.options.probeType = 3
+			iScrollServices.refresh()
+			console.log(iScrollServices.options)
+			let submenuScroll;
+		
+
+			$('.submenu .submenu_scroll').each(function() {
+				let linksWidth = 0
+				$(this).find('a[data-scrollanchor]').each(function() {
+					linksWidth += $(this).width() + 80
+				})
+				$(this).find('.menu_scroller').width(linksWidth)
+				submenuScroll = new IScroll(`.${$(this)[0].className}`, {
+					scrollX: true,
+					scrollY: false,
+					mouseWheel: true,
+					
+					disablePointer: true,
+					disableTouch: false,
+					disableMouse: false
+				});
+			})
+		
+
 			let offsetDiff = $('.section.services').find('.fp-scrollable').offset().top
 			$('.snap').each(function() {
 				if (($(this).offset().top - offsetDiff) <= 0) {
 					$('a[data-scrollanchor]').removeClass('active')
+					submenuScroll.scrollToElement(`a[data-scrollanchor="#${$(this).attr("id")}"]`)
 					$(`a[data-scrollanchor="#${$(this).attr("id")}"]`).addClass('active')
 				}
 			})
 
-
 			iScrollServices.on('scrollEnd', function() {
-
+				//console.log('ss')
 				$('.snap').each(function() {
+					
 					if (($(this).offset().top - offsetDiff) <= 0) {
 						$('a[data-scrollanchor]').removeClass('active')
+
 						$(`a[data-scrollanchor="#${$(this).attr("id")}"]`).addClass('active')
+						submenuScroll.scrollToElement(`a[data-scrollanchor="#${$(this).attr("id")}"]`)
 					}
 				})
-
-
 			})
 
 
-			//refreshCloseEvent(scrollers)
+
+
+
 
 			let darkSections = ['page3', 'page4', 'page5']
 			if (darkSections.indexOf(destination.anchor) !== -1) {
-
 				$('body').addClass('dark_theme')
 			} else {
 				$('body').removeClass('dark_theme')
 			}
 		},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-
 			refreshCloseEvent(scrollers)
-
-
-
 		}
 	});
 
 	$('.submenu a[data-scrollanchor]').click(function() {
 		iScrollServices.scrollToElement($(this).attr("data-scrollanchor"))
-
-
+		//console.log(iScrollServices)
 	})
 
 	$(document).mousemove(function(e) {
@@ -123,6 +144,10 @@ $(document).ready(function() {
 	$('a.project-link').mouseenter(function() {
 		$(this).addClass('scaled')
 
+		scrollers.forEach(function(item) {
+			item.disable()
+		})
+
 		$($(this).attr('href')).show().animate({
 			opacity: 0.25
 		}, 400)
@@ -149,7 +174,10 @@ $(document).ready(function() {
 		$('nav').removeClass('open')
 		refreshCloseEvent(scrollers)
 		e.preventDefault()
-
+		scrollers.forEach(function(item) {
+			console.log(item)
+			item.enable()
+		})
 		$(this).removeClass('scaled')
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
@@ -174,7 +202,7 @@ $(document).ready(function() {
 
 function refreshCloseEvent(arr) {
 	arr.forEach(function(item) {
-		console.log(item)
+
 		item.refresh()
 		var totalWidth = 0;
 
@@ -190,6 +218,7 @@ function refreshCloseEvent(arr) {
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
 		$('.page_header').removeClass('popup_open')
 		$('.logo').removeClass('dark')
+		$('.menu_toggle').removeClass('is-active')
 		$('#cursor').removeClass('dark')
 		$($(this).parent().parent()).removeClass('open').animate({
 			opacity: 0

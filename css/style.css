@@ -9,7 +9,10 @@ body {
 	font-weight: 500;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
 	font-family: 'Playfair Display', serif;
 	font-weight: 700;
 }
@@ -99,7 +102,6 @@ hr {
 	border-radius: 50%;
 	color: white;
 	font-size: 25px;
-	
 	align-items: center;
 	justify-content: center;
 }
@@ -120,6 +122,13 @@ hr {
 
 .project-popup.open .close-btn {
 	display: flex;
+}
+
+.submenu_scroll {
+	overflow-x: hidden;
+}
+
+.submenu_scroll .menu_scroller {
 }
 
 .project-link h4:before {
@@ -186,7 +195,8 @@ h3 {
 	margin-top: 40px;
 }
 
-p, q {
+p,
+q {
 	font-size: 18px;
 }
 
@@ -418,6 +428,12 @@ body.dark_theme {
 	align-items: center;
 }
 
+body.dark_theme .menu_toggle.hamburger .hamburger-inner,
+body.dark_theme .menu_toggle.hamburger .hamburger-inner:before,
+body.dark_theme .menu_toggle.hamburger .hamburger-inner:after {
+	background-color: #fff;
+}
+
 body.dark_theme .nav-list li.active a {
 	color: #fff;
 }
@@ -527,7 +543,8 @@ body.dark_theme .logo {
 	color: #fff;
 }
 
-.logo.dark, body.dark_theme .logo.dark {
+.logo.dark,
+body.dark_theme .logo.dark {
 	display: block;
 	border-color: #000;
 	color: #000;
@@ -545,6 +562,11 @@ body.dark_theme .logo {
 		transition: color 0.2s ease-in-out, transform 0.4s ease-in-out, background-color 0.2s ease-in-out;
 		background-color: rgba(255, 255, 255, 0.9);
 		width: 70vw;
+	}
+	
+	h2,
+	h3 {
+		font-size: 40px;
 	}
 
 	.dark_theme nav {
@@ -564,9 +586,9 @@ body.dark_theme .logo {
 
 	.project-popup.open .close-btn {
 		display: block;
-		right: 60px;
+		right: 40px;
 		left: auto;
-		top: 60px;
+		top: 20px;
 	}
 
 	.submenu {
@@ -632,10 +654,10 @@ body.dark_theme .logo {
 	header.page_header {
 		padding-left: 30px;
 		padding-right: 30px;
-		background-color: green;
 	}
 
-	h2 {
+	h2,
+	h3 {
 		font-size: 40px;
 	}
 
@@ -644,6 +666,18 @@ body.dark_theme .logo {
 		padding-left: 40px;
 		padding-right: 40px;
 		padding-top: 30px;
+	}
+
+	div.section.about .slide div.container-fluid {
+		padding-top: 0;
+		padding-left: 60px;
+		padding-right: 60px;
+		padding-top: 30px;
+	}
+
+	div.section .slide div.container-fluid {
+		padding-left: 40px;
+		padding-right: 40px;
 	}
 
 	.logo {
