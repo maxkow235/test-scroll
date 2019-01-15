@@ -224,7 +224,7 @@ function refreshCloseEvent(arr) {
 	})
 
 	$('.project-popup .scroll-wrap').children('.close-btn').remove()
-	$('.project-popup .scroll-wrap').prepend('<button class="close-btn">x</button>')
+	$('.project-popup .scroll-wrap').prepend('<button class="close-btn"></button>')
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
 		$('.page_header').removeClass('popup_open')
 		$('.logo').removeClass('dark')
