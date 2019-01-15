@@ -793,7 +793,10 @@ body.dark_theme .logo {
 		padding-left: 35px;
 		padding-right: 35px;
 	}
-
+	
+	.home p {
+	margin-top: 15px;
+}
 	.split div.section .container-fluid {
 		padding-left: 15px;
 		padding-right: 15px;
