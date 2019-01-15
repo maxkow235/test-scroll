@@ -78,7 +78,6 @@ $(document).ready(function() {
 			})
 
 			iScrollServices.on('scrollEnd', function() {
-				//console.log('ss')
 				$('.snap').each(function() {
 
 					if (($(this).offset().top - offsetDiff) <= 0) {
@@ -185,7 +184,6 @@ $(document).ready(function() {
 		refreshCloseEvent(scrollers)
 		e.preventDefault()
 		scrollers.forEach(function(item) {
-			console.log(item)
 			item.enable()
 		})
 		$(this).removeClass('scaled')
@@ -217,7 +215,6 @@ function refreshCloseEvent(arr) {
 		var totalWidth = 0;
 
 		$(`.${item.scroller.className}`).children().each(function() {
-			console.log($(this).width())
 			totalWidth = totalWidth + $(this).width();
 		});
 		item.scroller.style.minWidth = totalWidth + 160  + "px";
