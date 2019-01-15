@@ -178,6 +178,7 @@ $(document).ready(function() {
 	$('a.project-link').click(function(e) {
 		$('.logo').addClass('dark')
 		$('#cursor').addClass('dark')
+		$('.menu_toggle').addClass('noclick');
 		$('.page_header').addClass('popup_open')
 		$('nav').removeClass('open')
 		refreshCloseEvent(scrollers)
@@ -226,6 +227,7 @@ function refreshCloseEvent(arr) {
 	$('.project-popup .scroll-wrap').children('.close-btn').remove()
 	$('.project-popup .scroll-wrap').prepend('<button class="close-btn"></button>')
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
+
 		$('.page_header').removeClass('popup_open')
 		$('.logo').removeClass('dark')
 		$('.menu_toggle').removeClass('is-active')
@@ -234,6 +236,7 @@ function refreshCloseEvent(arr) {
 			opacity: 0
 		}, 400, function() {
 			$(this).hide()
+			$('.menu_toggle').removeClass('noclick');
 		})
 		$.fn.fullpage.setAllowScrolling(true);
 		$.fn.fullpage.setKeyboardScrolling(true);

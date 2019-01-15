@@ -9,10 +9,7 @@ body {
 	font-weight: 500;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
 	font-family: 'Playfair Display', serif;
 	font-weight: 700;
 }
@@ -72,6 +69,10 @@ hr {
 
 .dark_theme hr {
 	border-top: 1px dashed rgba(255, 255, 255, .3);
+}
+
+.noclick {
+	pointer-events: none;
 }
 
 .scroll-cont {
@@ -214,8 +215,7 @@ h3 {
 	margin-top: 40px;
 }
 
-p,
-q {
+p, q {
 	font-size: 18px;
 }
 
@@ -451,9 +451,7 @@ body.dark_theme {
 	align-items: center;
 }
 
-body.dark_theme .menu_toggle.hamburger .hamburger-inner,
-body.dark_theme .menu_toggle.hamburger .hamburger-inner:before,
-body.dark_theme .menu_toggle.hamburger .hamburger-inner:after {
+body.dark_theme .menu_toggle.hamburger .hamburger-inner, body.dark_theme .menu_toggle.hamburger .hamburger-inner:before, body.dark_theme .menu_toggle.hamburger .hamburger-inner:after {
 	background-color: #fff;
 }
 
@@ -517,8 +515,7 @@ div.section.partners div.container-fluid {
 	text-decoration: underline;
 }
 
-.languages a,
-.links_bottom a {
+.languages a, .links_bottom a {
 	font-size: 16px;
 	color: #9e9e9e;
 	margin-right: 30px;
@@ -535,17 +532,14 @@ div.section.partners div.container-fluid {
 .links_bottom {
 	position: absolute;
 	bottom: 60px;
-
 }
 
-.languages a:hover,
-.links_bottom a:hover {
+.languages a:hover, .links_bottom a:hover {
 	color: black;
 	text-decoration: underline;
 }
 
-.dark_theme .languages a:hover,
-.dark_theme .links_bottom a:hover {
+.dark_theme .languages a:hover, .dark_theme .links_bottom a:hover {
 	color: #fff;
 	text-decoration: underline;
 }
@@ -591,8 +585,7 @@ body.dark_theme .logo {
 .section.contacts .footer_links {
 }
 
-.logo.dark,
-body.dark_theme .logo.dark {
+.logo.dark, body.dark_theme .logo.dark {
 	display: block;
 	border-color: #000;
 	color: #000;
@@ -664,8 +657,7 @@ body.dark_theme .logo.dark {
 		width: 70vw;
 	}
 
-	h2,
-	h3 {
+	h2, h3 {
 		font-size: 40px;
 	}
 
@@ -761,13 +753,10 @@ body.dark_theme .logo.dark {
 	}
 
 	.languages {
-	
-	bottom: 70px;
-}
+		bottom: 70px;
+	}
 
-
-	h2,
-	h3 {
+	h2, h3 {
 		font-size: 40px;
 	}
 
@@ -789,8 +778,6 @@ body.dark_theme .logo.dark {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-
-
 
 	.logo {
 		width: 138px;
@@ -826,24 +813,21 @@ body.dark_theme .logo.dark {
 	}
 
 	div.section.about .slide div.container-fluid {
-   
-    padding-left: 35px;
-    padding-right: 35px;
-  
-}
+		padding-left: 35px;
+		padding-right: 35px;
+	}
 
-.links_bottom {
-	    bottom: 10px;
-}
+	.links_bottom {
+		bottom: 10px;
+	}
 
-	
 	h5.line {
-	font-size: 1rem;
+		font-size: 1rem;
 	}
 
 	h5.line:before {
-	width: 20px;
-	left: -23px;
+		width: 20px;
+		left: -23px;
 	}
 
 }
