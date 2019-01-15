@@ -229,6 +229,8 @@ function refreshCloseEvent(arr) {
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
 
 		$('.page_header').removeClass('popup_open')
+		$('body').removeClass('dark')
+
 		$('.logo').removeClass('dark')
 		$('.menu_toggle').removeClass('is-active')
 		$('#cursor').removeClass('dark')
