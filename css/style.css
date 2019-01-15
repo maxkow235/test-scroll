@@ -95,7 +95,6 @@ hr {
 	position: absolute;
 	background-image:url(../img/close_btn.png);
 	background-position: center center;
-	-webkit-background-size: cover;
 	background-size: cover;
 	background-color: transparent;
 	border: 0;
@@ -171,13 +170,18 @@ a.project-link {
 	text-decoration: none;
 	position: relative;
 	color: black;
+	transition: -webkit-transform 0.2s ease-in;
 	transition: transform 0.2s ease-in;
+	transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
 }
 
 a.project-link.scaled {
-	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	        transform: scale(1.05);
 	z-index: 700;
+	transition: -webkit-transform 0.2s ease-out;
 	transition: transform 0.2s ease-out;
+	transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
 }
 
 a.project-link.scaled h4:before {
@@ -392,7 +396,9 @@ nav.split {
 }
 
 .fp-slidesContainer {
+	transition: -webkit-transform 700ms ease 0s !important;
 	transition: transform 700ms ease 0s !important;
+	transition: transform 700ms ease 0s, -webkit-transform 700ms ease 0s !important;
 }
 
 .split div.section .container-fluid {
@@ -617,7 +623,6 @@ body.dark_theme .logo {
 	display: block;
 	width: 120px;
 	height: 37px;
-	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: center center;
 	background-color: #000;
@@ -634,13 +639,16 @@ body.dark_theme .logo {
 @media (max-width:768px) {
 	nav.split {
 		position: fixed;
-		transform: translateX(100%);
+		-webkit-transform: translateX(100%);
+		        transform: translateX(100%);
 		backdrop-filter: blur(10px);
 		-webkit-backdrop-filter: blur(10px);
 		top: 0;
 		bottom: 0;
 		right: 0;
+		transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, -webkit-transform 0.4s ease-in-out;
 		transition: color 0.2s ease-in-out, transform 0.4s ease-in-out, background-color 0.2s ease-in-out;
+		transition: color 0.2s ease-in-out, transform 0.4s ease-in-out, background-color 0.2s ease-in-out, -webkit-transform 0.4s ease-in-out;
 		background-color: rgba(255, 255, 255, 0.9);
 		width: 70vw;
 	}
@@ -654,8 +662,11 @@ body.dark_theme .logo {
 	}
 
 	nav.open {
-		transform: translateX(0%);
+		-webkit-transform: translateX(0%);
+		        transform: translateX(0%);
+		transition: -webkit-transform 0.4s ease-out;
 		transition: transform 0.4s ease-out;
+		transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
 	}
 
 	.fixed_submenu {
@@ -706,7 +717,8 @@ body.dark_theme .logo {
 
 	header.page_header .menu_toggle {
 		display: block;
-		transform: scale(0.8);
+		-webkit-transform: scale(0.8);
+		        transform: scale(0.8);
 		padding: 0;
 		outline: 0;
 		margin-left: auto;
