@@ -223,9 +223,7 @@ q {
 	font-size: 18px;
 }
 
-* {
-	cursor: none;
-}
+
 
 #cursor {
 	pointer-events: none;
