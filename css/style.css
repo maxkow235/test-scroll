@@ -9,10 +9,7 @@ body {
 	font-weight: 500;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
 	font-family: 'Playfair Display', serif;
 	font-weight: 700;
 }
@@ -125,8 +122,6 @@ hr {
 	position: relative;
 }
 
-
-
 .p_section .text {
 	position: absolute;
 	bottom: 50px;
@@ -208,8 +203,7 @@ h3 {
 	margin-top: 40px;
 }
 
-p,
-q {
+p, q {
 	font-size: 18px;
 }
 
@@ -443,9 +437,7 @@ body.dark_theme {
 	align-items: center;
 }
 
-body.dark_theme .menu_toggle.hamburger .hamburger-inner,
-body.dark_theme .menu_toggle.hamburger .hamburger-inner:before,
-body.dark_theme .menu_toggle.hamburger .hamburger-inner:after {
+body.dark_theme .menu_toggle.hamburger .hamburger-inner, body.dark_theme .menu_toggle.hamburger .hamburger-inner:before, body.dark_theme .menu_toggle.hamburger .hamburger-inner:after {
 	background-color: #fff;
 }
 
@@ -574,15 +566,60 @@ body.dark_theme .logo {
 .section.contacts .footer_links {
 }
 
-.logo.dark,
-body.dark_theme .logo.dark {
+.logo.dark, body.dark_theme .logo.dark {
 	display: block;
 	border-color: #000;
 	color: #000;
 }
 
 .project_info {
-	width: 420px;
+	width: 620px;
+}
+
+.p_section h2 {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.p_section .header {
+	    width: 450px;
+    position: absolute;
+    right: -240px;
+    top: 240px;
+}
+
+.p_section .header h2 {
+	font-size: 40px;
+}
+
+#p_section3 .project_info {
+	width: 500px;
+}
+
+.project_info .buttons {
+	display: flex;
+	justify-content: space-between;
+}
+
+.layout2 {
+	margin-left: 100px;
+}
+
+.project_info .buttons a {
+	display: block;
+	width: 120px;
+	height: 37px;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	background-color: #000;
+}
+
+.project_info .buttons a.appstore {
+	background-image: url('../img/appstore.png');
+}
+
+.project_info .buttons a.play {
+	background-image: url('../img/play.png');
 }
 
 @media (max-width:768px) {
@@ -599,8 +636,7 @@ body.dark_theme .logo.dark {
 		width: 70vw;
 	}
 
-	h2,
-	h3 {
+	h2, h3 {
 		font-size: 40px;
 	}
 
@@ -691,8 +727,7 @@ body.dark_theme .logo.dark {
 		padding-right: 30px;
 	}
 
-	h2,
-	h3 {
+	h2, h3 {
 		font-size: 40px;
 	}
 
