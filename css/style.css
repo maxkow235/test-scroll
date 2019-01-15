@@ -706,7 +706,7 @@ body.dark_theme .logo.dark {
 	}
 
 	header.page_header {
-		background-color: rgba(255, 255, 255, 0.9);
+		background-color: rgba(255, 255, 255, 0.8);
 		transition: background-color 0.2s ease-in-out;
 		backdrop-filter: blur(10px);
 		-webkit-backdrop-filter: blur(10px);
@@ -721,7 +721,7 @@ body.dark_theme .logo.dark {
 	}
 
 	header.page_header.dark {
-		background-color: rgba(0, 0, 0, 0.9);
+		background-color: rgba(0, 0, 0, 0.8);
 	}
 
 	.logo {
