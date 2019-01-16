@@ -42,7 +42,7 @@ $(document).ready(function() {
 
 			}
 			var submenuScroll;
-
+	refreshCloseEvent(scrollers)
 
 			$('.submenu .submenu_scroll').each(function() {
 				let linksWidth = 0
@@ -104,59 +104,28 @@ $(document).ready(function() {
 			}
 		},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-			scrollers.forEach(function(item) {
-				item.refresh()
-			})
-			refreshCloseEvent(scrollers)
+		refreshCloseEvent(scrollers)
+			
 		}
 	});
 
 
 
-	$(document).mousemove(function(e) {
 
-		const cursor = $('#cursor');
-		const target = $(event.target);
-
-		// update position of cursor
-		cursor.css('left', e.clientX - 10).css('top', e.clientY - 10);
-
-		const isLinkTag = target.is('a, .project-link, .project-link *');
-		const isHovered = cursor.hasClass('hoveredCursor');
-
-		// toggle the cursor class if necessary 
-		if (isLinkTag && !isHovered) {
-
-			cursor.addClass('hoveredCursor');
-
-		} else if (!isLinkTag && isHovered) {
-
-			cursor.removeClass('hoveredCursor');
-
-		}
-
-	});
 
 	$(window).resize(function() {
-		scrollers.forEach(function(item) {
-			item.refresh()
-		})
 		refreshCloseEvent(scrollers)
 	})
 
 	$(document).mouseleave(function(e) {
-		scrollers.forEach(function(item) {
-			item.refresh()
-		})
+		refreshCloseEvent(scrollers)
 		const cursor = $('#cursor');
 		cursor.hide()
 
 	});
 
 	$(document).mouseenter(function(e) {
-		scrollers.forEach(function(item) {
-			item.refresh()
-		})
+		refreshCloseEvent(scrollers)
 		const cursor = $('#cursor');
 		cursor.show()
 
@@ -169,9 +138,7 @@ $(document).ready(function() {
 			item.disable()
 		})
 
-		scrollers.forEach(function(item) {
-			item.refresh()
-		})
+		
 
 		$($(this).attr('href')).show().animate({
 			opacity: 0.25
@@ -201,11 +168,12 @@ $(document).ready(function() {
 		$('.menu_toggle').addClass('noclick');
 		$('.page_header').addClass('popup_open')
 		$('nav').removeClass('open')
-		refreshCloseEvent(scrollers)
+		//refreshCloseEvent(scrollers)
 		e.preventDefault()
 		scrollers.forEach(function(item) {
 			item.enable()
 		})
+		
 		$(this).removeClass('scaled')
 
 		$($(this).attr('href')).addClass('open')
@@ -243,11 +211,6 @@ function refreshCloseEvent(arr) {
 		});
 		item.scroller.style.minWidth = totalWidth + 160 + "px";
 		item.scroller.style.width = totalWidth + 160 + "px";
-		item.scroller.addEventListener('touchmove', function(event) {
-			event.preventDefault();
-		}, {
-			passive: false
-		});
 
 	})
 
