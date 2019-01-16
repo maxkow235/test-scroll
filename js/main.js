@@ -2,6 +2,7 @@ $(document).ready(function() {
 	var scrollers = []
 	var iScrollServices
 	var iScrollPartners
+
 	$('.project-popup').each(function() {
 
 		myScroll = new IScroll(`#${$(this).attr('id')} .scroll-wrap`, {
@@ -9,7 +10,7 @@ $(document).ready(function() {
 			scrollY: false,
 			mouseWheel: true,
 			click: true,
-			probeType: 2,
+			probeType: 3,
 			disablePointer: true, // important to disable the pointer events that causes the issues
 			disableTouch: false,
 			disableMouse: false
@@ -19,7 +20,9 @@ $(document).ready(function() {
 	})
 
 
-
+	scrollers.forEach(function(item) {
+		item.refresh()
+	})
 	$('#fullpage').fullpage({
 		//options here
 		scrollHorizontally: true,
@@ -36,7 +39,7 @@ $(document).ready(function() {
 		afterLoad: function(origin, destination, direction) {
 			if ($('.section.services').find('.fp-scrollable')[0]) {
 				iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
-				
+
 			}
 			var submenuScroll;
 
@@ -79,6 +82,7 @@ $(document).ready(function() {
 			})
 
 			iScrollServices.on('scrollEnd', function() {
+
 				$('.snap').each(function() {
 
 					if (($(this).offset().top - offsetDiff) <= 0) {
@@ -100,6 +104,9 @@ $(document).ready(function() {
 			}
 		},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
+			scrollers.forEach(function(item) {
+				item.refresh()
+			})
 			refreshCloseEvent(scrollers)
 		}
 	});
@@ -131,19 +138,25 @@ $(document).ready(function() {
 	});
 
 	$(window).resize(function() {
-			
+		scrollers.forEach(function(item) {
+			item.refresh()
+		})
 		refreshCloseEvent(scrollers)
 	})
 
 	$(document).mouseleave(function(e) {
-
+		scrollers.forEach(function(item) {
+			item.refresh()
+		})
 		const cursor = $('#cursor');
 		cursor.hide()
 
 	});
 
 	$(document).mouseenter(function(e) {
-
+		scrollers.forEach(function(item) {
+			item.refresh()
+		})
 		const cursor = $('#cursor');
 		cursor.show()
 
@@ -154,6 +167,10 @@ $(document).ready(function() {
 
 		scrollers.forEach(function(item) {
 			item.disable()
+		})
+
+		scrollers.forEach(function(item) {
+			item.refresh()
 		})
 
 		$($(this).attr('href')).show().animate({
@@ -176,7 +193,7 @@ $(document).ready(function() {
 
 
 	$('a.project-link').click(function(e) {
-		
+
 
 		$('.languages').hide()
 		$('.logo').addClass('dark')
@@ -190,7 +207,7 @@ $(document).ready(function() {
 			item.enable()
 		})
 		$(this).removeClass('scaled')
-		
+
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
 			opacity: 1
@@ -200,7 +217,7 @@ $(document).ready(function() {
 		$.fn.fullpage.setKeyboardScrolling(false);
 	})
 
-	
+
 
 	$('.menu_toggle').click(function() {
 		$(this).toggleClass('is-active')
@@ -214,6 +231,7 @@ $(document).ready(function() {
 
 })
 
+
 function refreshCloseEvent(arr) {
 	arr.forEach(function(item) {
 
@@ -225,6 +243,11 @@ function refreshCloseEvent(arr) {
 		});
 		item.scroller.style.minWidth = totalWidth + 160 + "px";
 		item.scroller.style.width = totalWidth + 160 + "px";
+		item.scroller.addEventListener('touchmove', function(event) {
+			event.preventDefault();
+		}, {
+			passive: false
+		});
 
 	})
 
@@ -232,7 +255,7 @@ function refreshCloseEvent(arr) {
 	$('.project-popup .scroll-wrap').prepend('<button class="close-btn"></button>')
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
 
-		
+
 		$('.languages').show()
 		$('.page_header').removeClass('popup_open')
 		$('body').removeClass('dark')
@@ -240,7 +263,6 @@ function refreshCloseEvent(arr) {
 		$('.logo').removeClass('dark')
 		$('.menu_toggle').removeClass('is-active')
 		$('#cursor').removeClass('dark')
-		//$($(this).parent().parent()).appendTo('.section.partners .container-fluid')
 		$($(this).parent().parent()).removeClass('open').animate({
 			opacity: 0
 		}, 400, function() {
