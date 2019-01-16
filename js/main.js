@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var scrollers = []
 	var iScrollServices
+	var iScrollPartners
 	$('.project-popup').each(function() {
 
 		myScroll = new IScroll(`#${$(this).attr('id')} .scroll-wrap`, {
@@ -33,9 +34,13 @@ $(document).ready(function() {
 
 		anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
 		afterLoad: function(origin, destination, direction) {
-			iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
-
-
+			if ($('.section.services').find('.fp-scrollable')[0]) {
+				iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
+				
+			}
+			if( $('.section.partners').find('.fp-scrollable')[0]) {
+				iScrollPartners = $('.section.partners').find('.fp-scrollable')[0].fp_iscrollInstance
+			}
 
 			var submenuScroll;
 
@@ -130,7 +135,14 @@ $(document).ready(function() {
 	});
 
 	$(window).resize(function() {
-
+			if ($('.section.services').find('.fp-scrollable')[0]) {
+				iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
+				
+			}
+			if( $('.section.partners').find('.fp-scrollable')[0]) {
+				iScrollPartners = $('.section.partners').find('.fp-scrollable')[0].fp_iscrollInstance
+			}
+		console.log(iScrollPartners)
 		refreshCloseEvent(scrollers)
 	})
 
@@ -175,6 +187,9 @@ $(document).ready(function() {
 
 
 	$('a.project-link').click(function(e) {
+		if (iScrollPartners) {
+			iScrollPartners.disable()
+		}
 		$('.languages').hide()
 		$('.logo').addClass('dark')
 		$('#cursor').addClass('dark')
@@ -195,6 +210,8 @@ $(document).ready(function() {
 		$.fn.fullpage.setAllowScrolling(false);
 		$.fn.fullpage.setKeyboardScrolling(false);
 	})
+
+	console.log($('.scroll_lightblue').find('.fp-scrollable'))
 
 	$('.menu_toggle').click(function() {
 		$(this).toggleClass('is-active')
@@ -217,14 +234,19 @@ function refreshCloseEvent(arr) {
 		$(`.${item.scroller.className}`).children().each(function() {
 			totalWidth = totalWidth + $(this).width();
 		});
-		item.scroller.style.minWidth = totalWidth + 160  + "px";
-		item.scroller.style.width = totalWidth + 160  + "px";
+		item.scroller.style.minWidth = totalWidth + 160 + "px";
+		item.scroller.style.width = totalWidth + 160 + "px";
 
 	})
 
 	$('.project-popup .scroll-wrap').children('.close-btn').remove()
 	$('.project-popup .scroll-wrap').prepend('<button class="close-btn"></button>')
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
+
+		if ($('.section.partners').find('.fp-scrollable')[0]) {
+			iScrollPartners = $('.section.partners').find('.fp-scrollable')[0].fp_iscrollInstance
+			iScrollPartners.enable()
+		}
 		$('.languages').show()
 		$('.page_header').removeClass('popup_open')
 		$('body').removeClass('dark')
