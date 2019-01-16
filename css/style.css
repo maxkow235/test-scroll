@@ -115,7 +115,20 @@ hr {
 	display: none;
 	opacity: 0;
 	width: 100vw;
-	height: 100vh;
+	background-color: #fff;
+	color: #000;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	z-index: -1;
+}
+
+.project-popup.open {
+	position: absolute;
+	display: none;
+	opacity: 0;
+	width: 100vw;
 	background-color: #fff;
 	color: #000;
 	left: 0;
@@ -202,14 +215,26 @@ a.project-link.scaled h4:before {
 div.img_wrapper {
 	overflow: hidden;
 	height: 200px;
-	margin-bottom: 30px;
+	
 	width: 200px;
-	background-color: #fff;
+	
 	color: black;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+div.img_wrapper img {
+	object-fit: cover;
+	width: 100%;
+}
+
+.name_wrapper {
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 
 h3 {
 	font-size: 55px;
@@ -304,6 +329,13 @@ h2 {
 	font-size: 40px;
 }
 
+.name_wrap {
+
+}
+.name_wrap img {
+		width: 100%;
+}
+
 header.page_header {
 	position: fixed;
 	padding-top: 0;
@@ -318,7 +350,7 @@ header.page_header {
 	position: fixed;
 	top: 80px;
 	right: 100px;
-	z-index: 400;
+	z-index: 600;
 	background-image: url(../img/logo_white.png);
 	-webkit-background-size: cover;
 	background-size: cover;

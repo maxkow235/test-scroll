@@ -38,10 +38,6 @@ $(document).ready(function() {
 				iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
 				
 			}
-			if( $('.section.partners').find('.fp-scrollable')[0]) {
-				iScrollPartners = $('.section.partners').find('.fp-scrollable')[0].fp_iscrollInstance
-			}
-
 			var submenuScroll;
 
 
@@ -135,14 +131,7 @@ $(document).ready(function() {
 	});
 
 	$(window).resize(function() {
-			if ($('.section.services').find('.fp-scrollable')[0]) {
-				iScrollServices = $('.section.services').find('.fp-scrollable')[0].fp_iscrollInstance
-				
-			}
-			if( $('.section.partners').find('.fp-scrollable')[0]) {
-				iScrollPartners = $('.section.partners').find('.fp-scrollable')[0].fp_iscrollInstance
-			}
-		console.log(iScrollPartners)
+			
 		refreshCloseEvent(scrollers)
 	})
 
@@ -187,9 +176,8 @@ $(document).ready(function() {
 
 
 	$('a.project-link').click(function(e) {
-		if (iScrollPartners) {
-			iScrollPartners.disable()
-		}
+		
+
 		$('.languages').hide()
 		$('.logo').addClass('dark')
 		$('#cursor').addClass('dark')
@@ -202,6 +190,7 @@ $(document).ready(function() {
 			item.enable()
 		})
 		$(this).removeClass('scaled')
+		
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
 			opacity: 1
@@ -211,7 +200,7 @@ $(document).ready(function() {
 		$.fn.fullpage.setKeyboardScrolling(false);
 	})
 
-	console.log($('.scroll_lightblue').find('.fp-scrollable'))
+	
 
 	$('.menu_toggle').click(function() {
 		$(this).toggleClass('is-active')
@@ -243,10 +232,7 @@ function refreshCloseEvent(arr) {
 	$('.project-popup .scroll-wrap').prepend('<button class="close-btn"></button>')
 	$('.project-popup .scroll-wrap .close-btn').click(function() {
 
-		if ($('.section.partners').find('.fp-scrollable')[0]) {
-			iScrollPartners = $('.section.partners').find('.fp-scrollable')[0].fp_iscrollInstance
-			iScrollPartners.enable()
-		}
+		
 		$('.languages').show()
 		$('.page_header').removeClass('popup_open')
 		$('body').removeClass('dark')
@@ -254,6 +240,7 @@ function refreshCloseEvent(arr) {
 		$('.logo').removeClass('dark')
 		$('.menu_toggle').removeClass('is-active')
 		$('#cursor').removeClass('dark')
+		//$($(this).parent().parent()).appendTo('.section.partners .container-fluid')
 		$($(this).parent().parent()).removeClass('open').animate({
 			opacity: 0
 		}, 400, function() {
