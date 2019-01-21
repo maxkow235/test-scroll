@@ -134,9 +134,7 @@ $(document).ready(function() {
 	$('a.project-link').mouseenter(function() {
 		$(this).addClass('scaled')
 
-		scrollers.forEach(function(item) {
-			item.disable()
-		})
+		
 
 		
 
@@ -168,11 +166,9 @@ $(document).ready(function() {
 		$('.menu_toggle').addClass('noclick');
 		$('.page_header').addClass('popup_open')
 		$('nav').removeClass('open')
-		//refreshCloseEvent(scrollers)
+		
 		e.preventDefault()
-		scrollers.forEach(function(item) {
-			item.enable()
-		})
+		
 		
 		$(this).removeClass('scaled')
 
