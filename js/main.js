@@ -104,7 +104,7 @@ $(document).ready(function() {
 			}
 		},
 		afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
-		refreshCloseEvent(scrollers)
+		//refreshCloseEvent(scrollers)
 			
 		}
 	});
@@ -175,7 +175,9 @@ $(document).ready(function() {
 		$($(this).attr('href')).addClass('open')
 		$($(this).attr('href')).show().animate({
 			opacity: 1
-		}, 400)
+		}, 400,function() {
+			refreshCloseEvent(scrollers)
+		})
 
 		$.fn.fullpage.setAllowScrolling(false);
 		$.fn.fullpage.setKeyboardScrolling(false);
